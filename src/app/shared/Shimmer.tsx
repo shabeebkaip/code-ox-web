@@ -1,0 +1,26 @@
+'use client';
+
+import React from 'react';
+
+const Shimmer = () => {
+    return (
+        <div className="flex flex-col md:flex-row gap-6 p-6 border border-gray-200 animate-pulse min-h-[80vh] bg-white shadow-sm">
+            <div className="w-full md:w-1/3 flex justify-center items-center">
+                <div className="w-[90%] h-[60%] bg-gray-200 rounded-xl" />
+            </div>
+
+            <div className="w-full md:w-2/3 space-y-5 py-4 px-2  flex justify-center items-center flex-col">
+                <div className="h-20 bg-gray-200 rounded-md w-3/4" />
+                <div className="h-10 bg-gray-200 rounded-md w-1/2" />
+                <div className="h-5 bg-gray-200 rounded-md w-5/6" />
+                <div className="h-5 bg-gray-200 rounded-md w-full" />
+                <div className="h-5 bg-gray-200 rounded-md w-full" />
+                <div className="h-5 bg-gray-200 rounded-md w-5/6" />
+                <div className="h-10 bg-gray-200 rounded-md w-1/2" />
+                <div className="h-20 bg-gray-200 rounded-md w-3/4" />
+            </div>
+        </div>
+    );
+};
+
+export default Shimmer;
