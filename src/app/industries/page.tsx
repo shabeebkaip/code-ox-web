@@ -1,10 +1,10 @@
 import React from 'react'
-import IndustryComponent from './components/IndustryComponent'
+// import IndustryComponent from './components/IndustryComponent'
 
 const page = () => {
   return (
     <div>
-        <IndustryComponent/>
+        {/* <IndustryComponent/> */}
     </div>
   )
 }

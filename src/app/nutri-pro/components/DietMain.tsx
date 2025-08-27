@@ -1,16 +1,11 @@
-'use client';
+"use client";
 
-import React, { useEffect, useState } from 'react';
-import Hero from './Hero';
-import NutriSlider from './NutriSlider';
-import WhyChoose from './WhyChooseUs';
-import Features from './Features';
-import Audience from './Audience';
-import ClientShowcase from './ClientShowCase';
-import Innovators from './Innovators';
+import React, { useEffect, useState } from "react";
+import Hero from "./Hero";
+import NutriSlider from "./NutriSlider";
 // import Shimmer from '.';
 
-import { getNutriProPageData } from '../../apiServices/apiServices';
+import { getNutriProPageData } from "../../apiServices/apiServices";
 
 // ---------------- INTERFACES ----------------
 
@@ -27,62 +22,19 @@ interface SliderItem {
   image: string;
 }
 
-interface WhyChooseTitle {
-  title: string;
-  description: string;
-}
-
-interface WhyChooseCard {
-  _id: string;
-  icon: string;
-  title: string;
-  description: string;
-}
-
-interface FeatureCard {
-  _id: string;
-  icon: string;
-  title: string;
-}
-
-interface AudienceTitle {
-  title: string;
-  description: string;
-}
-
-interface AudienceCard {
-  _id: string;
-  icon: string;
-  title: string;
-  description: string;
-}
-
-interface Testimonial {
-  _id: string;
-  logo: string;
-  message: string;
-  name: string;
-  designation: string;
-}
-
-interface InnovatorSection {
-  title: string;
-  description: string;
-}
-
 interface SectionItem {
   _id: string;
   section:
-    | 'heroSection'
-    | 'nutriSlider'
-    | 'whyChooseDiet'
-    | 'whyChooseCards'
-    | 'nutriFeatureCards'
-    | 'whoCanUse'
-    | 'audienceCards'
-    | 'testimonials'
-    | 'innovatorsInHealth';
-  content: any;
+    | "heroSection"
+    | "nutriSlider"
+    | "whyChooseDiet"
+    | "whyChooseCards"
+    | "nutriFeatureCards"
+    | "whoCanUse"
+    | "audienceCards"
+    | "testimonials"
+    | "innovatorsInHealth";
+  content: unknown;
   createdAt: string;
   updatedAt: string;
   __v: number;
@@ -90,8 +42,13 @@ interface SectionItem {
 
 // ---------------- HELPER ----------------
 
-const findSection = <T,>(sectionName: SectionItem['section'], data: SectionItem[] | null): T | undefined => {
-  return data?.find((item) => item.section === sectionName)?.content as T | undefined;
+const findSection = <T,>(
+  sectionName: SectionItem["section"],
+  data: SectionItem[] | null
+): T | undefined => {
+  return data?.find((item) => item.section === sectionName)?.content as
+    | T
+    | undefined;
 };
 
 // ---------------- MAIN COMPONENT ----------------
@@ -100,7 +57,7 @@ const DietMain = () => {
   const [nutriData, setNutriData] = useState<SectionItem[] | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-
+  console.log("Nutri Data:", loading);
   useEffect(() => {
     const fetchNutriProData = async () => {
       try {
@@ -108,8 +65,8 @@ const DietMain = () => {
         setNutriData(data);
         setError(null);
       } catch (err) {
-        console.error('Error fetching Nutri Pro page data:', err);
-        setError('Failed to load Nutri Pro page content.');
+        console.error("Error fetching Nutri Pro page data:", err);
+        setError("Failed to load Nutri Pro page content.");
       } finally {
         setLoading(false);
       }
@@ -118,32 +75,24 @@ const DietMain = () => {
     fetchNutriProData();
   }, []);
 
-  const heroData = findSection<HeroContent>('heroSection', nutriData);
-  const sliderData = findSection<SliderItem[]>('nutriSlider', nutriData);
-  const whyChooseTitle = findSection<WhyChooseTitle>('whyChooseDiet', nutriData);
-  const whyChooseCards = findSection<WhyChooseCard[]>('whyChooseCards', nutriData);
-  const featureCards = findSection<FeatureCard[]>('nutriFeatureCards', nutriData);
-  const audienceTitle = findSection<AudienceTitle>('whoCanUse', nutriData);
-  const audienceCards = findSection<AudienceCard[]>('audienceCards', nutriData);
-  const testimonials = findSection<Testimonial[]>('testimonials', nutriData);
-  const innovatorsData = findSection<InnovatorSection>('innovatorsInHealth', nutriData);
+  const heroData = findSection<HeroContent>("heroSection", nutriData);
+  const sliderData = findSection<SliderItem[]>("nutriSlider", nutriData);
+
+  // const featureCards = findSection<FeatureCard[]>('nutriFeatureCards', nutriData);
 
   // if (loading) return <Shimmer />;
-  if (error) return <div className="h-screen flex items-center justify-center text-red-500">{error}</div>;
+  if (error)
+    return (
+      <div className="h-screen flex items-center justify-center text-red-500">
+        {error}
+      </div>
+    );
 
   return (
     <div>
-      {heroData && featureCards && <Hero data={heroData} features={featureCards} />}
-      {sliderData && <NutriSlider slides={sliderData} />}
-      {(whyChooseTitle || whyChooseCards) && (
-      <WhyChoose title={whyChooseTitle} cards={whyChooseCards} />
-      )}      {/* {featureCards && <Features features={featureCards} />} */}
-      {(audienceTitle || audienceCards) && (
-        <Audience title={audienceTitle} cards={audienceCards} />
-      )}
-{testimonials && innovatorsData && (
-  <ClientShowcase titleData={innovatorsData} testimonials={testimonials} />
-)}    </div>
+      {heroData && <Hero data={heroData} features={[]} />}
+      {sliderData && <NutriSlider slides={[]} />}
+    </div>
   );
 };
 

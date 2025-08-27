@@ -2,16 +2,11 @@
 import React, { useEffect, useState } from 'react'
 import Hero from './components/Hero'
 import OurTeam from './components/OurTeam'
-import OurValues from './components/OurValues'
-import Achievements from './components/Achievements'
 import { getAboutUsPageData, getOurTeam } from '../apiServices/apiServices'
 import { findSections } from '../shared/SectionFilter'
 import HeroShimmer from './components/HeroShimmer'
-import OurMission from './components/OurMission'
-import OurVision from './components/OurVision'
 import Story from './components/Story'
 import Connect from '../shared/Connect'
-import Thoughts from './components/Thoughts'
 import MissionVision from './components/MissionVision'
 
 const Page = () => {
@@ -44,10 +39,10 @@ const Page = () => {
   }, []);
 
   const heroData = findSections('heroSection', data.aboutData);
-  const overValueData = findSections('ourValues', data.aboutData);
-  const achievementData = findSections('achievements', data.aboutData);
-  const ourMissionData = findSections('ourMission', data.aboutData);
-  const ourVisionnData = findSections('ourVision', data.aboutData);
+  // const overValueData = findSections('ourValues', data.aboutData);
+  // const achievementData = findSections('achievements', data.aboutData);
+  // const ourMissionData = findSections('ourMission', data.aboutData);
+  // const ourVisionnData = findSections('ourVision', data.aboutData);
 
   if (loading) return (
     <div>
@@ -67,7 +62,7 @@ const Page = () => {
       <Connect
       paragraphText="Boost your business with expert development services that lead the way in digital transformation."
       buttonText="Lets Grow Together"/>
-      <OurValues data={overValueData} />
+      {/* <OurValues data={overValueData} /> */}
       {/* <Thoughts/> */}
       <OurTeam data={data.team} />
       {/* <Connect

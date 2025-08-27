@@ -32,7 +32,7 @@ interface CompactMegaMenuProps {
 
 // Compact Mega Menu Component
 const CompactMegaMenu: React.FC<CompactMegaMenuProps> = ({ isOpen, onClose, menuData, onNavigate, activeMegaMenu }) => {
-  const [hoveredItem, setHoveredItem] = useState(null);
+  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
 
   return (
     <div
@@ -178,10 +178,10 @@ const CompactMegaMenu: React.FC<CompactMegaMenuProps> = ({ isOpen, onClose, menu
       )}
     </div>
     
-    {["Services", "Industries"].includes(activeMegaMenu?.name) && (
+    {activeMegaMenu?.name && ["Services", "Industries"].includes(activeMegaMenu.name) && (
     <div className="bg-yellow-50 px-6 py-4 mt-6 text-sm text-gray-700 rounded-lg flex justify-between items-center">
       <span>
-        Didn't find what you're looking for? Let us know your needs, and we'll tailor a solution just for you.
+        {`Didn't find what you're looking for? Let us know your needs, and we'll tailor a solution just for you.`}
       </span>
       <button className="bg-white text-black border border-black hover:bg-black hover:text-white px-4 py-2 rounded-lg  transition">
         Consult Our Experts
@@ -375,7 +375,7 @@ const Navbar = () => {
     }
   };
 
-  const handleMegaMenuOpen = (menuData, menuName) => {
+  const handleMegaMenuOpen = (menuData: MenuSection[], menuName: string) => {
     setActiveMegaMenu({ data: menuData, name: menuName });
     setShowMegaMenu(true);
     setShowDropdown(false);
@@ -387,7 +387,7 @@ const Navbar = () => {
   };
 
   const toggleMenu = () => setIsOpen(!isOpen);
-  const toggleMobileSubmenu = (name) => {
+  const toggleMobileSubmenu = (name: string) => {
     setShowMobileSubmenu(showMobileSubmenu === name ? null : name);
   };
 

@@ -8,17 +8,13 @@ import {
 import Shimmer from "./Shimmer";
 import Hero from "./Hero";
 // import BannerSection from "./Banner";
-import Services from "./OurServices";
-import OurProducts from "./OurProducts";
 import Achievements from "@/app/about-us/components/Achievements";
-import WorldMaps from "./WorldMaps";
 import TestimonialsSlider from "./Testimonials";
 import ClientList from "./ClientList";
 import OurService1 from "./OurService1";
 import Odoo from "./Odoo";
 import Industries from "./Industries";
 import Technologies from "./Technologies";
-import Contact from "./Contact";
 import Speciality from "./Speciality";
 import FAQ from "./FAQ";
 
@@ -28,18 +24,6 @@ interface HeroContent {
   title: string;
 }
 
-interface OurService {
-  _id: string;
-  index: number;
-  services: string;
-  link: string;
-}
-
-interface OurProduct {
-  _id: string;
-  index: number;
-  products: string;
-}
 
 interface Testimonial {
   _id: string;
@@ -57,17 +41,8 @@ interface StatData {
   label: string;
 }
 
-interface BannerContent {
-  image: {
-    fileUrl: string;
-    id: string;
-  };
-}
 
-interface Location {
-  _id: string;
-  country: string;
-}
+
 
 interface SectionItem {
   _id: string;
@@ -79,7 +54,7 @@ interface SectionItem {
     | "testimonials"
     | "testimonials"
     | "achievements";
-  content: any;
+  content: unknown;
   createdAt: string;
   updatedAt: string;
   __v: number;
@@ -140,8 +115,8 @@ const HomeComponent = () => {
 
   const heroData = findSections<HeroContent>("heroSection", homeData);
   // const bannerData = findSections<BannerContent>("banner", homeData);
-  const serviceData = findSections<OurService[]>("ourServices", homeData);
-  const productData = findSections<OurProduct[]>("ourProducts", homeData);
+  // const serviceData = findSections<OurService[]>("ourServices", homeData);
+  // const productData = findSections<OurProduct[]>("ourProducts", homeData);
   const testimonialData = findSections<Testimonial[]>("testimonials", homeData);
   // const countryData = findSections<Location[]>('location', homeData);
   const achievementData = findSections<StatData[]>(
@@ -169,8 +144,8 @@ const HomeComponent = () => {
     <div className="bg-white">
       {heroData && <Hero heroData={heroData} />}
       {/* {bannerData && <BannerSection bannerData={bannerData} />} */}
-      <ClientList/>
-      <OurService1/>
+      <ClientList />
+      <OurService1 />
       {/* {serviceData && <Services serviceData={serviceData} />} */}
       {/* {productData && <OurProducts productData={productData} />} */}
       {testimonialData && (
@@ -178,10 +153,10 @@ const HomeComponent = () => {
       )}
       <Industries />
       <Odoo />
-      <Technologies/>
-      {achievementData && <Achievements data={achievementData} />}
-      <Speciality/>
-      <FAQ/>
+      <Technologies />
+      {achievementData && <Achievements  />}
+      <Speciality />
+      <FAQ />
       {/* <Contact/> */}
       {/* {countryData && <BasicMap country={countryData} />} */}
       {/* <WorldMaps /> */}

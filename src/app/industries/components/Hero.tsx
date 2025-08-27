@@ -60,7 +60,7 @@ const Hero = () => {
   }, []);
 
   const currentIndustry = industries[index];
-  const iconsToShow = industryIcons[currentIndustry] || [];
+  const iconsToShow = industryIcons[currentIndustry as keyof typeof industryIcons] || [];
 
   return (
     <div className="bg-black text-white w-full h-auto py-16 px-4">
